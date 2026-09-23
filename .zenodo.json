@@ -1,0 +1,13 @@
+{
+  "title": "Code and data for: A Two-Decade Decline in Daytime Land Surface Temperature over Ajmer, Semi-Arid Northwest India",
+  "description": "Python code, input data subsets (MODIS MOD11A2/MYD11A2, VIIRS VNP21A2, MCD12Q1, MCD12Q2 and ERA5-Land) and tests that reproduce all tables and figures of the associated manuscript: Theil-Sen/Mann-Kendall LST trends, overpass-geometry and clear-sky sampling controls, ERA5-Land comparison at matched overpass time, month-resolved trends, phenology trends and attribution statistics. See README.md for usage.",
+  "upload_type": "software",
+  "creators": [
+    {
+      "name": "Malik, Pallavi",
+      "affiliation": "Department of Mathematics, University of Engineering & Management, Jaipur, India",
+      "orcid": "0000-0003-0327-3648"
+    }
+  ],
+  "keywords": ["land surface temperature", "MODIS", "ERA5-Land", "land surface phenology", "trend analysis", "Rajasthan"]
+}
