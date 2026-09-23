@@ -1,5 +1,5 @@
 """
-Figures 1-5 for the Ajmer LST manuscript. Run after ajmer_lst_analysis.py.
+Figures 1-5 for the Ajmer LST manuscript (numbered in order of first mention in the text). Run after ajmer_lst_analysis.py.
 Usage: python src/ajmer_lst_figures.py [results_dir]
 """
 import os, sys, warnings
@@ -33,10 +33,10 @@ def sen_line(ax, a, **kw):
 def pfmt(p): return "p < 0.001" if p < 0.001 else f"p = {p:.3f}"
 def star(p): return "***" if p < .001 else "**" if p < .01 else "*" if p < .05 else " (n.s.)"
 def save(fig, name):
-    fig.savefig(os.path.join(R, name), dpi=DPI, bbox_inches="tight"); plt.close(fig); print("saved", name)
+    fig.savefig(os.path.join(R, name), dpi=DPI)  # fixed canvas size to match the manuscript figure boxes; plt.close(fig); print("saved", name)
 
-# ---------------- Figure 1
-fig, axs = plt.subplots(2, 2, figsize=(7.2, 5.2), sharex=True)
+# ---------------- Figure 1: LST time series
+fig, axs = plt.subplots(2, 2, figsize=(7.13, 7.13*0.69516), sharex=True)
 for i, tod in enumerate(["Day", "Night"]):
     for j, plat in enumerate(["Terra", "Aqua"]):
         ax = axs[i, j]; df = SC[(plat, tod)]
@@ -51,9 +51,9 @@ for i, tod in enumerate(["Day", "Night"]):
         ax.set_title(f"{plat} {tod.lower()}time: {sl*10:+.2f} K dec$^{{-1}}$ ({pfmt(mk_p(yrs.values))})")
 fig.tight_layout(); save(fig, "fig1_lst_timeseries.png")
 
-# ---------------- Figure 2
+# ---------------- Figure 3 (manuscript numbering): ERA5-Land comparison and step (manuscript numbering): phenology and moisture (manuscript numbering): month-resolved trends
 M = pd.read_csv(os.path.join(R, "month_resolved_trends.csv"))
-fig, axs = plt.subplots(1, 2, figsize=(7.2, 2.8), sharey=True)
+fig, axs = plt.subplots(1, 2, figsize=(7.13, 7.13*0.41613), sharey=True)
 x = np.arange(1, 13); w = 0.38
 for ax, plat in zip(axs, ["Terra", "Aqua"]):
     m = M[M.platform == plat]
@@ -67,9 +67,9 @@ for ax, plat in zip(axs, ["Terra", "Aqua"]):
     ax.axhline(0, color="k", lw=0.6); ax.set_xticks(x); ax.set_xticklabels(list("JFMAMJJASOND"))
     ax.set_title(f"{plat} sampling"); ax.set_ylim(-3.8, 2.4)
 axs[0].set_ylabel("Daytime trend (K dec$^{-1}$)"); axs[0].legend(loc="lower left", frameon=False)
-fig.tight_layout(); save(fig, "fig2_month_resolved.png")
+fig.tight_layout(); save(fig, "fig4_month_resolved.png")
 
-# ---------------- Figure 3 (Terra drift panels + before/after controls, both platforms)
+# ---------------- Figure 2 (manuscript numbering): geometry and sampling controls
 def controls(plat):
     df = SC[(plat, "Day")].dropna(subset=["vtime", "vang", "clear"]).copy()
     vt = month_anom(df.vtime); va = df.vang - df.vang.mean(); cs = month_anom(df.clear)
@@ -82,7 +82,7 @@ def controls(plat):
     for k, a in out.items():
         sl, ic, lo, hi = stats.theilslopes(a.values, a.index.values.astype(float)); res[k] = (sl*10, lo*10, hi*10)
     return res
-fig, axs = plt.subplots(1, 3, figsize=(7.6, 2.6))
+fig, axs = plt.subplots(1, 3, figsize=(7.13, 7.13*0.34677))
 df = SC[("Terra", "Day")]
 for ax, col, lab, sc in [(axs[0], "vtime", "Overpass time (local solar, h)", 1), (axs[1], "vang", "|View zenith angle| (deg)", 1)]:
     a = annual(df[col]); ax.plot(a.index, a.values, "o-", color=C["Terra"], ms=3, lw=1)
@@ -98,12 +98,12 @@ for k, plat in enumerate(["Terra", "Aqua"]):
         ax.errorbar(xi, s, yerr=[[s-lo], [hi-s]], color="k", lw=0.8, capsize=2)
 ax.set_xticks(range(3)); ax.set_xticklabels(labels, fontsize=6); ax.axhline(0, color="k", lw=0.6)
 ax.set_ylabel("Daytime trend (K dec$^{-1}$)"); ax.legend(frameon=False, loc="lower right")
-fig.tight_layout(); save(fig, "fig3_artifact_controls.png")
+fig.tight_layout(); save(fig, "fig2_artifact_controls.png")
 
-# ---------------- Figure 4
+# ---------------- Figure 3 (manuscript numbering): ERA5-Land comparison and step (manuscript numbering): phenology and moisture
 PH = pd.read_csv(os.path.join(R, "phenology_annual.csv"), index_col=0)
 H = pd.read_csv(os.path.join(R, "era5_hydroclimate_annual.csv"), index_col=0)
-fig, axs = plt.subplots(1, 3, figsize=(7.2, 2.5))
+fig, axs = plt.subplots(1, 3, figsize=(7.13, 7.13*0.36129))
 ax = axs[0]
 for m, c in [("MidGreenup", "#2e7d32"), ("MidGreendown", "#8d6e63"), ("Dormancy", "#5d4037")]:
     ax.plot(PH.index, PH[m], "o-", ms=2.5, lw=1, color=c, label=m); sen_line(ax, PH[m], color=c, lw=0.8)
@@ -118,10 +118,10 @@ ax = axs[2]; hh = H.loc[Y0:Y1]
 ax.bar(hh.index, hh.P_JJAS, color="#90caf9"); ax.set_ylabel("Jun–Sep rainfall (mm)")
 ax2 = ax.twinx(); ax2.plot(hh.index, hh.SM1_SOND, "o-", color="#0d47a1", ms=2.5, lw=1)
 ax2.set_ylabel("Sep–Dec soil moisture L1 (m$^3$ m$^{-3}$)"); ax.set_title("ERA5-Land")
-fig.tight_layout(); save(fig, "fig4_phenology_moisture.png")
+fig.tight_layout(); save(fig, "fig5_phenology_moisture.png")
 
-# ---------------- Figure 5
-fig, axs = plt.subplots(1, 3, figsize=(7.2, 2.5))
+# ---------------- Figure 3 (manuscript numbering): ERA5-Land comparison and step
+fig, axs = plt.subplots(1, 3, figsize=(7.13, 7.13*0.36129))
 ax = axs[0]; d = SC[("Terra", "Day")].dropna(subset=["e_skt"])
 ax.scatter(d.e_skt, d.lst, s=2, alpha=0.4, color=C["Terra"]); lim = [d[["e_skt", "lst"]].min().min()-1, d[["e_skt", "lst"]].max().max()+1]
 ax.plot(lim, lim, "k-", lw=0.8); ax.set_xlim(lim); ax.set_ylim(lim)
@@ -132,7 +132,7 @@ for lab, s, c in [("Terra", SC[("Terra", "Day")].anom, C["Terra"]), ("Aqua", SC[
                   ("ERA5 (Terra)", SC[("Terra", "Day")].e_skt_anom, C["ERA5"])]:
     a = annual(s); ax.plot(a.index, a.values, "o-", ms=2.5, lw=1, color=c, label=lab)
 ax.axvline(2012.5, color="k", ls=":", lw=1); ax.axhline(0, color="0.5", lw=0.5)
-ax.set_ylabel("Annual daytime anomaly (K)"); ax.legend(frameon=False)
+ax.set_ylabel("Annual daytime anomaly (K)"); ax.set_ylim(-2.6, 3.2); ax.legend(frameon=False, ncol=3, loc="upper center", fontsize=5.5, handlelength=1.2, columnspacing=0.6)
 ax = axs[2]; k = 0
 for plat in ["Terra", "Aqua"]:
     for lab, col, c in [("MODIS", "anom", C[plat]), ("ERA5", "e_skt_anom", C["ERA5"])]:
@@ -142,4 +142,4 @@ for plat in ["Terra", "Aqua"]:
         ax.bar(k, st, color=c); ax.errorbar(k, st, yerr=se, color="k", capsize=2, lw=0.8); k += 1
 ax.set_xticks(range(4)); ax.set_xticklabels(["Terra\nMODIS", "Terra\nERA5", "Aqua\nMODIS", "Aqua\nERA5"], fontsize=6.5)
 ax.axhline(0, color="k", lw=0.6); ax.set_ylabel("Step 2013–21 minus 2003–12 (K)")
-fig.tight_layout(); save(fig, "fig5_era5_step.png")
+fig.tight_layout(); save(fig, "fig3_era5_step.png")
