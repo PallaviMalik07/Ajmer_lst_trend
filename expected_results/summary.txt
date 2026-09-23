@@ -1,0 +1,107 @@
+MCD12Q1 2019 LC_Type1 counts in window (12=cropland, 13=urban, 16=barren): {12: 231, 13: 57, 16: 1} total 289
+Terra: 1015 composites, 2000-02-18 to 2022-03-14
+  Day: 984 valid scenes; LST 288.6-320.9 K; mean overpass 10.83 h; mean |VZA| 10.4 deg; QA 94.9%
+  Night: 969 valid scenes; LST 279.0-303.6 K; mean overpass 22.26 h; mean |VZA| 10.6 deg; QA 97.7%
+Aqua: 907 composites, 2002-07-04 to 2022-03-14
+  Day: 865 valid scenes; LST 294.4-324.1 K; mean overpass 13.31 h; mean |VZA| 11.1 deg; QA 93.8%
+  Night: 850 valid scenes; LST 278.7-302.2 K; mean overpass 1.89 h; mean |VZA| 10.9 deg; QA 96.7%
+
+== Table 1: trends 2001-2021, K/decade ==
+Terra daytime | -1.37 [-1.86, -0.85] p=0.000 (n=21) | -0.78 [-1.52, -0.27] p=0.009 (n=21) | -0.39 [-0.86, +0.11] p=0.124 (n=21)
+Terra nighttime | +0.23 [-0.08, +0.65] p=0.139 (n=21) | -0.09 [-0.54, +0.26] p=0.566 (n=21) | -0.15 [-0.59, +0.32] p=0.608 (n=21)
+Aqua daytime | -1.40 [-2.14, -0.66] p=0.001 (n=19) | -0.68 [-1.49, +0.02] p=0.050 (n=19) | -0.17 [-0.78, +0.37] p=0.624 (n=19)
+Aqua nighttime | +0.35 [-0.02, +0.83] p=0.050 (n=19) | -0.06 [-0.64, +0.57] p=0.834 (n=19) | -0.13 [-0.64, +0.56] p=0.889 (n=19)
+
+== 3.2 geometry and sampling controls (daytime) ==
+{'platform': 'Terra', 'time_drift_min_dec': np.float64(-1.088), 'time_drift_p': np.float64(0.156), 'sens_K_per_h': np.float64(-0.923), 'implied_time': np.float64(0.017), 'vza_drift_deg_dec': np.float64(0.142), 'vza_drift_p': np.float64(0.695), 'sens_K_per_deg': np.float64(-0.078), 'implied_vza': np.float64(-0.011), 'total_implied': np.float64(0.006), 'trend_before': np.float64(-1.37), 'trend_after': np.float64(-1.33), 'p_after': np.float64(0.0)}
+{'platform': 'Aqua', 'time_drift_min_dec': np.float64(2.776), 'time_drift_p': np.float64(0.021), 'sens_K_per_h': np.float64(3.434), 'implied_time': np.float64(0.159), 'vza_drift_deg_dec': np.float64(0.563), 'vza_drift_p': np.float64(0.624), 'sens_K_per_deg': np.float64(-0.101), 'implied_vza': np.float64(-0.057), 'total_implied': np.float64(0.102), 'trend_before': np.float64(-1.399), 'trend_after': np.float64(-1.546), 'p_after': np.float64(0.001)}
+Terra Day: clear-sky count trend -0.24 [-0.64, -0.03] p=0.024 (n=21); QA% mean 94.9, trend -0.87 [-2.74, +1.31] p=0.566 (n=21)
+Terra Night: clear-sky count trend -0.18 [-0.45, +0.03] p=0.075 (n=21); QA% mean 97.7, trend -1.42 [-2.76, +0.37] p=0.227 (n=21)
+Aqua Day: clear-sky count trend -0.07 [-0.26, +0.15] p=0.484 (n=19); QA% mean 93.8, trend +0.77 [-2.04, +3.34] p=0.624 (n=19)
+Aqua Night: clear-sky count trend -0.08 [-0.45, +0.26] p=0.675 (n=19); QA% mean 96.7, trend -0.00 [-1.95, +2.17] p=1.000 (n=19)
+
+== VIIRS VNP21A2 day ==
+VNP21A2: 460 composites 2012-01-25 to 2022-01-17
+VIIRS 2012-2021: -1.76 [-3.67, -0.16] p=0.012 (n=10)
+Terra day 2012-2021: -0.87 [-2.77, +0.17] p=0.152 (n=10)
+Aqua day 2012-2021: -0.33 [-2.47, +1.73] p=0.474 (n=10)
+VIIRS-Aqua bias: mean +2.44 K, trend -0.52 [-1.31, +0.07] p=0.074 (n=10)
+
+== Table 2: scene-level MODIS vs ERA5-Land skt ==
+{'series': 'Terra daytime', 'n': 862, 'bias': np.float64(-0.4698174172021507), 'sd': np.float64(1.9816935394262618), 'r': np.float64(0.9566853247992211)}
+{'series': 'Terra nighttime', 'n': 938, 'bias': np.float64(-2.120594010817629), 'sd': np.float64(1.5655450405260916), 'r': np.float64(0.9742450523918322)}
+{'series': 'Aqua daytime', 'n': 849, 'bias': np.float64(-1.2224313385735501), 'sd': np.float64(2.1338507876333597), 'r': np.float64(0.9513926119306692)}
+{'series': 'Aqua nighttime', 'n': 596, 'bias': np.float64(-1.1950988820443287), 'sd': np.float64(1.8540000805265238), 'r': np.float64(0.9684791152699684)}
+
+== Step change, month-anomalies 2003-2012 vs 2013-2021 (Welch) ==
+Terra MODIS: step -1.32 K, p=8.31e-10
+Terra ERA5 skt: step -0.68 K, p=1.79e-03
+Aqua MODIS: step -1.54 K, p=1.56e-12
+Aqua ERA5 skt: step -0.75 K, p=8.17e-04
+
+== Month-resolved daytime trends, K/decade ==
+platform  month  modis  modis_p   era5  era5_p
+   Terra      1 -1.566    0.037 -0.471   0.581
+   Terra      2 -0.924    0.264 -0.281   0.786
+   Terra      3 -1.688    0.050 -1.094   0.206
+   Terra      4 -1.167    0.014 -0.186   0.740
+   Terra      5  0.364    0.487  0.294   0.608
+   Terra      6 -1.105    0.216  0.555   0.349
+   Terra      7 -0.009    0.976  0.467   0.740
+   Terra      8 -1.389    0.239 -0.650   0.487
+   Terra      9 -2.846    0.005 -2.452   0.032
+   Terra     10 -2.326    0.003 -2.407   0.017
+   Terra     11 -2.077    0.001 -1.346   0.014
+   Terra     12 -1.796    0.001 -1.059   0.027
+    Aqua      1 -1.952    0.036 -0.841   0.363
+    Aqua      2 -1.564    0.124  0.166   0.944
+    Aqua      3 -1.802    0.030 -0.980   0.363
+    Aqua      4 -1.980    0.025 -0.811   0.108
+    Aqua      5  0.067    1.000 -0.111   0.834
+    Aqua      6 -1.178    0.327  0.475   0.484
+    Aqua      7  0.446    0.576  2.009   0.234
+    Aqua      8  0.086    0.834 -0.227   0.675
+    Aqua      9 -2.481    0.042 -1.794   0.234
+    Aqua     10 -2.311    0.008 -2.220   0.093
+    Aqua     11 -2.060    0.002 -1.537   0.142
+    Aqua     12 -1.527    0.005 -1.117   0.142
+
+== Table 3: MCD12Q2 Cycle 1 phenometrics 2001-2019 ==
+Greenup -0.86 [-9.76, +7.15] d/dec p=0.834 (n=19)
+MidGreenup +1.48 [-7.19, +11.44] d/dec p=0.726 (n=19)
+Maturity +4.74 [-4.02, +13.92] d/dec p=0.234 (n=19)
+Peak +7.00 [-0.87, +14.78] d/dec p=0.059 (n=19)
+Senescence +8.72 [+0.36, +15.46] d/dec p=0.036 (n=19)
+MidGreendown +13.04 [+2.24, +22.45] d/dec p=0.008 (n=19)
+Dormancy +13.44 [+4.42, +23.00] d/dec p=0.005 (n=19)
+
+== ERA5-Land hydroclimate 2001-2021 ==
+P_SOND slope +53.6 mm/dec p=0.012
+P_JJAS slope +83 mm/dec p=0.110
+SM1_SOND slope +0.0238 m3m-3/dec p=0.017
+withdrawal_doy slope +9.55 d/dec p=0.065
+transp_SOND slope +4.37e-06 p=0.065
+evap_SOND slope -0.000467 p=0.024
+October LAI: mean 1.150, SD across years 2.27e-16
+
+== Attribution, 2001-2019 ==
+Terra: years 2001-2019 (n=19)
+  r(SOND LST, MidGreendown) = -0.895 (p=2.3e-07); detrended -0.831 (p=1.1e-05)
+  ERA5 skt detrended r = -0.765 (p=0.0001)
+  May-Jul falsification detrended r = +0.103 (p=0.67)
+  r(SOND LST, SOND SM1) = -0.889 (p=3.7e-07)
+  r(MidGreendown, SM1) = 0.758
+  partial r(LST,MGD|SM) = -0.741 (p=0.000); partial r(LST,SM|MGD) = -0.724 (p=0.001)
+  R2 MGD 0.80; R2 SM 0.79; joint R2 0.91 adj 0.89 (p MGD 0.000, p SM 0.001); +JJAS rain p = 0.75
+Aqua: years 2003-2019 (n=17)
+  r(SOND LST, MidGreendown) = -0.844 (p=2.1e-05); detrended -0.802 (p=1.1e-04)
+  ERA5 skt detrended r = -0.710 (p=0.0014)
+  May-Jul falsification detrended r = +0.101 (p=0.70)
+  r(SOND LST, SOND SM1) = -0.892 (p=1.6e-06)
+  r(MidGreendown, SM1) = 0.706
+  partial r(LST,MGD|SM) = -0.668 (p=0.005); partial r(LST,SM|MGD) = -0.778 (p=0.000)
+  R2 MGD 0.71; R2 SM 0.79; joint R2 0.89 adj 0.87 (p MGD 0.005, p SM 0.000); +JJAS rain p = 0.87
+
+== Clear-sky count as an additional control (daytime) ==
+Terra: clear-day drift -0.24 d/composite/dec (p=0.024); sensitivity +0.797 K per clear day (p=0.000); implied -0.195 K/dec; trend after removing time+VZA+clear-sky: -1.00 [-1.46, -0.57] p=0.001 (n=21)
+Aqua: clear-day drift -0.07 d/composite/dec (p=0.484); sensitivity +0.931 K per clear day (p=0.000); implied -0.064 K/dec; trend after removing time+VZA+clear-sky: -1.39 [-2.21, -0.55] p=0.003 (n=19)
