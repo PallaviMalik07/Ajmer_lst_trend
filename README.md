@@ -7,10 +7,10 @@ Reanalysis Corroboration, and Attribution to Post-Monsoon Wetting and Delayed Ca
 The code:
 
 1. computes Theil–Sen / Mann–Kendall trends (2001–2021) in MODIS Terra and Aqua day and night LST over a 17 × 17 km window centred on Ajmer (Table 1);
-2. tests the trend against overpass-time drift, view-zenith-angle drift, clear-sky sampling and QA pass rate (§3.2, Fig. 3);
-3. compares MODIS with ERA5-Land skin temperature interpolated to each scene's local solar overpass time (Table 2, Fig. 5);
-4. resolves the trend by calendar month (Fig. 2), tests the 2003–2012 vs 2013–2021 step, and checks VIIRS VNP21A2;
-5. computes MCD12Q2 phenology trends (Table 3) and the attribution statistics linking post-monsoon LST to senescence timing and soil moisture (§3.5–3.6, Fig. 4).
+2. tests the trend against overpass-time drift, view-zenith-angle drift, clear-sky sampling and QA pass rate (§3.2, Fig. 2);
+3. compares MODIS with ERA5-Land skin temperature interpolated to each scene's local solar overpass time (Table 2, Fig. 3);
+4. resolves the trend by calendar month (Fig. 4), tests the 2003–2012 vs 2013–2021 step, and checks VIIRS VNP21A2;
+5. computes MCD12Q2 phenology trends (Table 3) and the attribution statistics linking post-monsoon LST to senescence timing and soil moisture (§3.5–3.6, Fig. 5).
 
 ## Repository structure
 
@@ -20,7 +20,7 @@ requirements.txt
 src/
   lstlib.py                  statistics and I/O helpers (Theil-Sen, Mann-Kendall, anomalies, interpolation)
   ajmer_lst_analysis.py      full analysis -> results/*.csv and results/summary.txt
-  ajmer_lst_figures.py       Figures 1-5 (400 dpi PNG) -> results/
+  ajmer_lst_figures.py       Figures 1-5 (400 dpi PNG, numbered as in the manuscript) -> results/
 tests/
   test_quick.py              quick test, a few seconds, uses only the example file below
   example_data/synthetic_lst_8day.csv   synthetic 8-day LST series with a known -1.5 K/decade trend
@@ -73,10 +73,14 @@ python tests/test_reproduce.py        # Expected ending: Ran 3 tests ... OK
 | `results/table1_trends.csv` | Table 1 |
 | `results/table2_scene_comparison.csv` | Table 2 |
 | `results/table3_phenology.csv` | Table 3 |
-| `results/geometry_controls.csv`, `summary.txt` (§3.2 block) | §3.2, Fig. 3 |
-| `results/month_resolved_trends.csv` | §3.4, Fig. 2 |
-| `results/era5_hydroclimate_annual.csv`, `summary.txt` (attribution block) | §3.5–3.6, Fig. 4 |
-| `results/fig1_lst_timeseries.png` … `fig5_era5_step.png` | Figures 1–5 |
+| `results/geometry_controls.csv`, `summary.txt` (§3.2 block) | §3.2 |
+| `results/month_resolved_trends.csv` | §3.4 |
+| `results/era5_hydroclimate_annual.csv`, `summary.txt` (attribution block) | §3.5–3.6 |
+| `results/fig1_lst_timeseries.png` | Figure 1 |
+| `results/fig2_artifact_controls.png` | Figure 2 |
+| `results/fig3_era5_step.png` | Figure 3 |
+| `results/fig4_month_resolved.png` | Figure 4 |
+| `results/fig5_phenology_moisture.png` | Figure 5 |
 
 ## Data
 
