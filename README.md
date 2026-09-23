@@ -112,7 +112,7 @@ Notes on the data:
 
 ## License
 
-To be added.
+No open-source license is attached. All rights are reserved by the author; please contact the author for permission to reuse or redistribute the code.
 
 ## Citation
 
